@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body,
+        html,
+        #container {
+            height: 100%;
+            width: 100%;
+        }
+
+        #container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        #display-container {
+            text-align: center;
+            font-size: 30vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="display-container"></div>
+    </div>
+
+    <script>
+        const options = ['ㅏ', 'ㅑ', 'ㅓ', 'ㅕ', 'ㅗ', 'ㅛ', 'ㅜ', 'ㅠ', 'ㅡ', 'ㅣ', 'ㅐ', 'ㅔ', 'ㄱ', 'ㄴ', 'ㄷ', 'ㅂ', 'ㅈ', 'ㅅ', 'ㅁ',
+            'ㅇ',
+            'ㄹ', 'ㅋ', 'ㅌ', 'ㅊ', 'ㅍ', 'ㅎ'
+        ];
+        const displayElement = document.getElementById('display-container');
+        let displayJamo = '';
+
+        function getRandomJamo() {
+            return options[Math.floor(Math.random() * options.length)];
+        }
+
+        function updateDisplayJamo() {
+            displayElement.innerText = displayJamo;
+        }
+
+        setInterval(() => {
+            displayJamo = getRandomJamo();
+            updateDisplayJamo();
+        }, 2000)
+    </script>
+</body>
+
+</html>
