@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body,
+        html,
+        #container {
+            height: 100%;
+            width: 100%;
+        }
+
+        #container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        #display-container {
+            text-align: center;
+            font-size: 30vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="display-container"></div>
+        <br>
+        <button id="next-syllables">Next Syllables</button>
+        <button id="dump-labels">dump labels</button>
+
+    </div>
+
+    <script>
+        const minCode = '가'.charCodeAt(0);
+        const maxCode = '힣'.charCodeAt(0);
+
+        let labels = [];
+
+        function dumpLables() {
+            console.log(JSON.stringify(labels));
+        }
+
+        document.getElementById('dump-labels').addEventListener('click', () => dumpLabels())
+
+        function getRandomSyllable() {
+            const codePoint = Math.floor(Math.random() * (maxCode - minCode) + minCode);
+            return String.fromCharCode(codePoint);
+        }
+
+        const displayElement = document.getElementById('display-container');
+
+        function updateDisplaySyllables() {
+            const arr = [];
+            for (let i = 0; i < 5; i++) {
+                arr.push(getRandomSyllable());
+            }
+            labels = [...labels, ...arr];
+            displayElement.innerText = arr.reduce((a, b) => a + b, '');
+        }
+
+        updateDisplaySyllables();
+        document.getElementById('next-syllables').addEventListener('click', () => updateDisplaySyllables());
+    </script>
+</body>
+
+</html>
