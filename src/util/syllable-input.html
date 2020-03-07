@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body,
+        html,
+        #container,
+        #input-container {
+            height: 100%;
+            width: 100%;
+        }
+
+        #input-container {
+            display: none;
+        }
+
+        #input {
+            width: 700px;
+            height: 350px;
+        }
+
+        #container {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        #container.visible {
+            display: flex;
+        }
+
+        #input-container.visible {
+            display: block;
+        }
+
+        #display-container {
+            text-align: center;
+            font-size: 30vh;
+        }
+
+        #container>div {
+            text-align: center;
+            font-size: 15vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="input-container" class="visible">
+        <textarea id="input" placeholder="Enter JSON data"></textarea>
+        <button id="submit">Submit</button>
+    </div>
+    <div id="container">
+        <div id="display-container-a"></div>
+        <div id="display-container-b"></div>
+        <div id="display-container-c"></div>
+        <div id="display-container-d"></div>
+        <br>
+        <button id="next-syllables">Next Syllables</button>
+        <button id="dump-labels">dump labels</button>
+
+    </div>
+
+    <script>
+        const minCode = '가'.charCodeAt(0);
+        const maxCode = '힣'.charCodeAt(0);
+
+
+        const inputContainer = document.getElementById('input-container');
+        const container = document.getElementById('container');
+
+        const input = document.getElementById('input');
+        const submit = document.getElementById('submit');
+
+        let labels = [];
+        let count = 0;
+
+        const toDisplayMode = () => {
+            inputContainer.classList.remove('visible')
+            container.classList.add('visible');
+        }
+
+
+        submit.addEventListener('click', () => {
+            const ext = input.value;
+            console.log(ext);
+            labels = JSON.parse(ext);
+            toDisplayMode();
+            updateDisplaySyllables();
+        })
+
+        nextSyllable = () => {
+            console.log(labels[count]);
+            return labels[count++] || '!';
+        }
+
+        const displayElementA = document.getElementById('display-container-a');
+        const displayElementB = document.getElementById('display-container-b');
+        const displayElementC = document.getElementById('display-container-c');
+        const displayElementD = document.getElementById('display-container-d');
+
+        const containers = [displayElementA, displayElementB,
+            displayElementC, displayElementD
+        ];
+
+        function fillContainer(container, syllables) {
+            const arr = [];
+            for (let i = 0; i < syllables; i++) {
+                arr.push(nextSyllable());
+            }
+            container.innerText = arr.reduce((a, b) => a + b, '');
+        }
+
+        function updateDisplaySyllables() {
+            containers.forEach(c => fillContainer(c, 5));
+        }
+
+        document.getElementById('next-syllables').addEventListener('click', () => updateDisplaySyllables());
+    </script>
+</body>
+
+</html>

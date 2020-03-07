@@ -1,5 +1,4 @@
-import labels from '../syllables-1-labels.json';
-import fs from fs;
+const {} = require('./jamo-util');
 
 const inputSyllableDirectory = '../syllable-data/images';
 const outputSyllableDirectory = '../syllable-data/categorized/';

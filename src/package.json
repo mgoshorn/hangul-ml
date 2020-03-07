@@ -1,0 +1,19 @@
+{
+  "name": "hangul-ml",
+  "version": "1.0.0",
+  "description": "This repo includes tools used when generating data for a Hangul Jamo ML demo. Included is a copy of the notebook, but not the dataset due to size and being a non-code file. These are stored on Drive for integration with the colab implementation\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mgoshorn/hangul-ml.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mgoshorn/hangul-ml/issues"
+  },
+  "homepage": "https://github.com/mgoshorn/hangul-ml#readme"
+}

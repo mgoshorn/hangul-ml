@@ -1,7 +1,10 @@
 const mappings = {
-    finalConsonant: new Map(),
-    initialConsonant: new Map(),
-    vowel: new Map(),
+    finalConsonant: new Map<string,
+        number>(),
+    initialConsonant: new Map<string,
+        number>(),
+    vowel: new Map<string,
+        number>(),
 };
 
 mappings.initialConsonant.set('ㄱ', 0);
@@ -91,7 +94,7 @@ for (const mappingName in mappings) {
     }
 }
 
-export function constructHangul(jamo) {
+export function constructHangul(jamo: string[]) {
     return String.fromCharCode(
         44032 +
         mappings.initialConsonant.get(jamo[0]) * 588 +
@@ -100,7 +103,7 @@ export function constructHangul(jamo) {
     );
 }
 
-export function destructHangul(hangul) {
+export function destructHangul(hangul: string): string[] {
     const charCode = hangul.charCodeAt(0);
     const initialConsonantId = Math.floor((charCode - 44032) / 588);
     const vowelId = Math.floor(((charCode - initialConsonantId * 588) - 44032) / 28);
